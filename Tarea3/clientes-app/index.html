@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clientes</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta name="color-scheme" content="light dark">
+</head>
+<body>
+  <header class="app-header">
+    <div class="container">
+      <h1>Ingresos de Clientes</h1>
+      <p class="sub">Bienvenido, eres el favorito de nuestra aplicación web, Solo lo encuentras aquí</p>
+    </div>
+  </header>
+
+  <main class="container layout" role="main" aria-describedby="status">
+    <!-- ======= Formulario para los clientes ======= -->
+    <section class="card" aria-labelledby="t-form">
+      <header class="card-header">
+        <h2 id="t-form">Formulario</h2>
+      </header>
+      <div class="card-content">
+        <form id="formCliente" novalidate>
+          <div class="form-grid">
+            <div class="f">
+              <label for="cedula">Cédula *</label>
+              <input id="cedula" name="cedula" autocomplete="off" required maxlength="30" />
+              <p class="help">Campo obligatorio</p>
+              <p class="error" id="cedulaError">Ingresa la cédula.</p>
+            </div>
+
+            <div class="f">
+              <label for="nombres">Nombres *</label>
+              <input id="nombres" name="nombres" autocomplete="given-name" required maxlength="60" />
+              <p class="error">Ingresa los nombres.</p>
+            </div>
+
+            <div class="f">
+              <label for="apellidos">Apellidos *</label>
+              <input id="apellidos" name="apellidos" autocomplete="family-name" required maxlength="60" />
+              <p class="error">Ingresa los apellidos.</p>
+            </div>
+
+            <div class="f">
+              <label for="email">Correo *</label>
+              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required maxlength="120" />
+              <p class="error" id="emailError">Ingresa un correo válido.</p>
+            </div>
+
+            <div class="f">
+              <label for="telefono">Teléfono *</label>
+              <input id="telefono" name="telefono" inputmode="tel" autocomplete="tel" required maxlength="25" placeholder="+593" />
+              <p class="error">Ingresa un teléfono válido (≥10 dígitos).</p>
+            </div>
+
+            <div class="f f-2">
+              <label for="direccion">Dirección *</label>
+              <input id="direccion" name="direccion" autocomplete="address-line1" required maxlength="160" />
+              <p class="error">Ingresa la dirección.</p>
+            </div>
+
+            <div class="f">
+              <label for="ciudad">Ciudad</label>
+              <input id="ciudad" name="ciudad" autocomplete="address-level2" maxlength="80" />
+            </div>
+
+            <div class="f">
+              <label for="pais">País</label>
+              <input id="pais" name="pais" autocomplete="country-name" maxlength="80" />
+            </div>
+
+            <div class="f f-2">
+              <label for="notas">Notas</label>
+              <textarea id="notas" name="notas" rows="3" maxlength="400" placeholder="Información adicional…"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="btnGuardar" class="btn success">Guardar cliente</button>
+            <button type="button" id="btnCancelarEdicion" class="btn secondary" style="display:none">Cancelar edición</button>
+            <button type="reset" id="btnLimpiar" class="btn ghost">Limpiar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ======= Lista  ======= -->
+    <section class="card" aria-labelledby="t-lista">
+      <header class="card-header">
+        <h2 id="t-lista">Clientes</h2>
+      </header>
+      <div class="card-content">
+        <div class="toolbar">
+          <div class="left">
+            <div class="pill" aria-label="Buscar">
+              🔎
+              <input id="busqueda" placeholder="Buscar por cédula, nombre, correo…" />
+            </div>
+            <span class="count"><strong id="contador">0</strong> cliente(s)</span>
+          </div>
+          <div class="right">
+            <button type="button" id="btnVista" class="btn">Vista: Tarjetas</button>
+            <button type="button" id="btnExportar" class="btn">Exportar CSV</button>
+          </div>
+        </div>
+
+        <!-- Aqui va una tabla -->
+        <div id="tablaWrap" class="table-wrap">
+          <table id="tablaClientes">
+            <thead>
+              <tr>
+                <th class="sortable" data-key="cedula" scope="col">Cédula <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="nombreCompleto" scope="col">Nombre <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="telefono" scope="col">Teléfono <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="email" scope="col">Correo <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="direccion" scope="col">Dirección <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="ciudad" scope="col">Ciudad <span class="arrow">↕</span></th>
+                <th class="sortable" data-key="pais" scope="col">País <span class="arrow">↕</span></th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyClientes" aria-live="polite">
+              <!-- Filas generadas por JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tarjetas -->
+        <div id="cardsGrid" class="cards-grid is-hidden" aria-live="polite">
+          <!-- Tarjetas generadas por JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Estados accesibles -->
+  <div id="status" class="sr" aria-live="polite"></div>
+  <div id="toast" class="toast"></div>
+
+  <script defer src="assets/js/app.js"></script>
+</body>
+</html>
