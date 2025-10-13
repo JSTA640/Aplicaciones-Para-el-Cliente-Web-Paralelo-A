@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operaciones con Bucle Tarea 5</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Operaciones con Bucle</h1>
+  <div class="container">
+    <label for="num1">Ingrese el primer número:</label>
+    <input type="number" id="num1">
+
+    <label for="num2">Ingrese el segundo número:</label>
+    <input type="number" id="num2">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div class="resultado" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcular() {
+      let num1 = parseFloat(document.getElementById("num1").value);
+      let num2 = parseFloat(document.getElementById("num2").value);
+      let salida = "";
+
+      if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById("resultado").innerHTML = "⚠️ Por favor ingrese ambos números.";
+        return;
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        switch (i) {
+          case 1:
+            salida += `Iteración ${i}: Suma = ${num1 + num2}<br>`;
+            break;
+          case 2:
+            salida += `Iteración ${i}: Resta = ${num1 - num2}<br>`;
+            break;
+          case 3:
+            salida += `Iteración ${i}: Multiplicación = ${num1 * num2}<br>`;
+            break;
+          case 4:
+            if (num2 !== 0)
+              salida += `Iteración ${i}: División = ${(num1 / num2).toFixed(2)}<br>`;
+            else
+              salida += `Iteración ${i}: División = No se puede dividir por 0<br>`;
+            break;
+          case 5:
+            if (num2 !== 0)
+              salida += `Iteración ${i}: Módulo = ${num1 % num2}<br>`;
+            else
+              salida += `Iteración ${i}: Módulo = No se puede calcular con divisor 0<br>`;
+            break;
+        }
+      }
+
+      document.getElementById("resultado").innerHTML = salida;
+    }
+  </script>
+
+</body>
+</html>
